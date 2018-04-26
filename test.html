@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .block-menu {
+            display: block;
+        }
+
+        .block-menu li {
+            display: inline-block;
+        }
+
+        .block-menu li a {
+            color: green;
+            display: block;
+            text-decoration: none;
+            font-smoothing: antialiased;
+            overflow: visible;
+            line-height: 18px;
+            font-size: 24px;
+            padding: 15px 10px;
+        }
+
+        /* animation domination */
+        .three-d {
+            perspective: 200px;
+            transition: all .07s linear;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* complete the animation! */
+        .three-d:hover .three-d-box,
+        .three-d:focus .three-d-box {
+            transform: translateZ(-25px) rotateX(90deg);
+            background-color: green;
+        }
+
+        .three-d-box {
+            transition: all .3s ease-out;
+            transform: translatez(-25px);
+            transform-style: preserve-3d;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*
+            put the "front" and "back" elements into place with CSS transforms,
+            specifically translation and translatez
+        */
+        .front {
+            transform: rotatex(0deg) translatez(25px);
+        }
+
+        .back {
+            transform: rotatex(-90deg) translatez(25px);
+            color: #000;
+        }
+
+        .front, .back {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            padding: 15px 10px;
+            color: #000;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .back {
+            background-color: green;
+            color: #fff;
+        }
+
+        .sliced img {
+            width: 100%;
+        }
+
+        .sliced {
+            position: relative;
+
+        }
+
+        .tile {
+            float: left;
+            opacity: 1;
+            -webkit-transition: all .3s ease-in-out;
+            -moz-transition: all .3s ease-in-out;
+            -ms-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
+        }
+
+        .tile-animated {
+            opacity: 0;
+        }
+
+        .css3-preload .sliced * {
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            -ms-transition: none !important;
+            -o-transition: none !important;
+            transition: none !important;
+        }
+
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/style8.css" />
+    <title></title>
+</head>
+<body>
+<ul class="block-menu">
+    <li><a href="/" class="three-d">
+        Home
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Home</span>
+			<span class="back">Home</span>
+		</span>
+    </a></li>
+    <li><a href="/demos" class="three-d">
+        Demos
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Demos</span>
+			<span class="back">Demos</span>
+		</span>
+    </a></li>
+    <li><a href="/" class="three-d">
+        Home
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Home</span>
+			<span class="back">Home</span>
+		</span>
+    </a></li>
+    <li><a href="/demos" class="three-d">
+        Demos
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Demos</span>
+			<span class="back">Demos</span>
+		</span>
+    </a></li>
+    <li><a href="/" class="three-d">
+        Home
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Home</span>
+			<span class="back">Home</span>
+		</span>
+    </a></li>
+    <li><a href="/demos" class="three-d">
+        Demos
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Demos</span>
+			<span class="back">Demos</span>
+		</span>
+    </a></li>
+    <!-- more items here -->
+</ul>
+
+
+<!--<div id="sliderFrame">
+    <div class="sliced">
+        <img src="images/banner1.jpg"/>
+
+    </div>
+
+</div>-->
+<div class="content">
+
+    <ul class="ca-menu">
+        <li>
+            <a href="#">
+                <div class="ca-content">
+                    <h2 class="ca-main">Home</h2>
+
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+
+                <div class="ca-content">
+                    <h2 class="ca-main">Projects</h2>
+
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+
+                <div class="ca-content">
+                    <h2 class="ca-main">About </h2>
+
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+
+                <div class="ca-content">
+                    <h2 class="ca-main">Media</h2>
+
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+
+                <div class="ca-content">
+                    <h2 class="ca-main">Blog</h2>
+
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+
+                <div class="ca-content">
+                    <h2 class="ca-main">Contact</h2>
+
+                </div>
+            </a>
+        </li>
+    </ul>
+</div><!-- content -->
+<script type="text/javascript" src="JS/jquery-2.1.4.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+<script>
+
+    ;
+    (function ($, window) {
+
+        var _defaults = {
+            x: 2, // number of tiles in x axis
+            y: 2, // number of tiles in y axis
+            random: true, // animate tiles in random order
+            speed: 2000 // time to clear all times
+        };
+
+        /**
+         * range Get an array of numbers within a range
+         * @param min {number} Lowest number in array
+         * @param max {number} Highest number in array
+         * @param rand {bool} Shuffle array
+         * @return {array}
+         */
+        function range(min, max, rand) {
+            var arr = ( new Array(++max - min) )
+                    .join('.').split('.')
+                    .map(function (v, i) {
+                        return min + i
+                    })
+            return rand
+                    ? arr.map(function (v) {
+                return [Math.random(), v]
+            })
+                    .sort().map(function (v) {
+                        return v[1]
+                    })
+                    : arr
+        }
+
+        // Prevent css3 transitions on load
+        $('body').addClass('css3-preload')
+        $(window).load(function () {
+            $('body').removeClass('css3-preload')
+        })
+
+        $.fn.sliced = function (options) {
+
+            var o = $.extend({}, _defaults, options);
+
+            return this.each(function () {
+
+                var $container = $(this);
+
+                /*---------------------------------
+                 * Make the tiles:
+                 ---------------------------------*/
+
+                var width = $container.width(),
+                        height = $container.height(),
+                        $img = $container.find('img'),
+                        n_tiles = o.x * o.y,
+                        tiles = [], $tiles;
+
+                for (var i = 0; i < n_tiles; i++) {
+                    tiles.push('<div class="tile"/>');
+                }
+
+                $tiles = $(tiles.join(''));
+
+                // Hide original image and insert tiles in DOM
+                $img.hide().after($tiles);
+
+                // Set background
+                $tiles.css({
+                    width: width / o.x,
+                    height: height / o.y,
+                    backgroundImage: 'url(' + $img.attr('src') + ')'
+                });
+
+                // Adjust position
+                $tiles.each(function () {
+                    var pos = $(this).position();
+                    $(this).css('backgroundPosition', -pos.left + 'px ' + -pos.top + 'px');
+                });
+
+                /*---------------------------------
+                 * Animate the tiles:
+                 ---------------------------------*/
+
+                var tilesArr = range(0, n_tiles, o.random),
+                        tileSpeed = o.speed / n_tiles; // time to clear a single tile
+
+                // Public method
+                $container.on('animate', function () {
+
+                    tilesArr.forEach(function (tile, i) {
+                        setTimeout(function () {
+                            $tiles.eq(tile).toggleClass('tile-animated');
+                        }, i * tileSpeed);
+                    });
+
+                });
+
+            });
+
+        };
+
+    }(jQuery, window));
+
+    $('.sliced').sliced({x: 8, y: 8, speed: 2000});
+
+    $(window).load()
+    {
+        $('.sliced').trigger('animate');
+
+    };
+            var $container = $("test.html");
+            $container.load(".sliced");
+            var refreshId = setInterval(function()
+            {
+                $container.load('.sliced');
+                $('.sliced').trigger('animate');
+            }, 3000);
+
+
+</script>
+
+</body>
+</html>
